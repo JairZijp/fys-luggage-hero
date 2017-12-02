@@ -13,12 +13,14 @@ import java.io.IOException;
 public class Main extends Application {
 
     private static Stage thePrimaryStage;
+    private static int StageWidth = 1000;
+    private static int StageHeight = 600;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("LostAndFound.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, StageWidth, StageHeight));
         primaryStage.show();
 
         thePrimaryStage = primaryStage;
@@ -28,7 +30,7 @@ public class Main extends Application {
         //Dit is een test..
         Parent root = FXMLLoader.load(Main.class.getResource(name));
         thePrimaryStage.setTitle("Hello World");
-        thePrimaryStage.setScene(new Scene(root, 999, 999));
+        thePrimaryStage.setScene(new Scene(root, StageWidth, StageHeight));
         thePrimaryStage.show();
     }
 
