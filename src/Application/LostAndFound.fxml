@@ -33,7 +33,7 @@
                             <TableColumn minWidth="0.0" prefWidth="59.99993896484375" text="Edit" />
                         </columns>
                     </TableView>
-                    <Button layoutX="539.0" layoutY="1.0" mnemonicParsing="false" text="New" />
+                    <Button layoutX="539.0" layoutY="1.0" onAction="#goToNew" mnemonicParsing="false" text="New" />
                     <TextField layoutX="82.0" prefHeight="26.0" prefWidth="60.0" text="input" />
                     <TextField layoutX="160.0" prefHeight="26.0" prefWidth="60.0" text="input" />
                     <TextField layoutX="237.0" prefHeight="26.0" prefWidth="60.0" text="input" />
