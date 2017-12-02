@@ -33,6 +33,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        DB database = new DB();
         launch(args);
+          
     }
 }
