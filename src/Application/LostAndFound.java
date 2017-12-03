@@ -9,7 +9,7 @@ public class LostAndFound {
     
     @FXML
     public void goToNew(ActionEvent event) throws IOException {
-        Main.GoToScreen("LostLuggage.fxml");
+        Main.GoToScreen("RegisterLuggage.fxml");
     }
     
 }
