@@ -14,18 +14,19 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Users">
     <children>
-        <BorderPane>
+        <BorderPane prefHeight="543.0" prefWidth="478.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
-                <AnchorPane>
+                <AnchorPane BorderPane.alignment="BOTTOM_RIGHT">
                     <children>
-                        <Text layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Users" />
-                        <Button layoutX="291.0" layoutY="6.0" mnemonicParsing="false" onAction="#GoToCreate" text="New user" />
-                        <TableView layoutY="39.0" prefHeight="270.0" prefWidth="357.0" tableMenuButtonVisible="true">
+                        <Text layoutY="9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Users" wrappingWidth="28.875" />
+                        <Button layoutX="278.0" layoutY="-8.0" mnemonicParsing="false" onAction="#GoToCreate" text="New user" AnchorPane.rightAnchor="0.0" />
+                        <TableView fx:id="UsersTable" layoutY="23.0" minWidth="-Infinity" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="23.0">
                             <columns>
-                                <TableColumn prefWidth="107.0" text="Username" />
-                                <TableColumn prefWidth="70.0" text="Name" />
-                                <TableColumn prefWidth="74.0" text="Role" />
-                                <TableColumn prefWidth="91.0" text="Action" />
+                        <TableColumn fx:id="TableID" minWidth="50.0" prefWidth="-1.0" text="ID" />
+                                <TableColumn fx:id="TableUsername" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="-1.0" text="Username" />
+                                <TableColumn fx:id="TableName" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="-1.0" text="Name" />
+                                <TableColumn fx:id="TableRole" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="-1.0" text="Role" />
+                                <TableColumn fx:id="TableAction" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="-1.0" text="Action" />
                             </columns>
                         </TableView>
                     </children>
