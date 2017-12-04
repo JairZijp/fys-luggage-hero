@@ -12,21 +12,43 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 /**
  *
  * @author Simon
  */
 public class Users implements Initializable{
+    @FXML
+    private TableView UsersTable;
+    @FXML
+    private TableColumn<ObservableList<String>, String> TableID;
+    @FXML
+    private TableColumn<ObservableList<String>, String> TableUsername;
+    @FXML
+    private TableColumn<ObservableList<String>, String> TableName;
+    @FXML
+    private TableColumn<ObservableList<String>, String> TableRole;
     
+    
+    @Override
     public void initialize(URL url, ResourceBundle rb){
        DB Connection = new DB();
        //Simpele query om te kijken of er een record dubbel is, niet specifiek welke record.
        String sql = String.format("SELECT `ID`, `username`, `name`, `role`, `email` FROM user");
-       ResultSet queryResult = Connection.executeResultSetQuery(sql);
+        try {
+            ResultSet queryResult = Connection.executeResultSetQuery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+//       TableID.setCellValueFactory()
+       
        
        Connection.close();
     }
