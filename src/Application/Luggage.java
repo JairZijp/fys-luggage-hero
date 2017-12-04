@@ -5,33 +5,43 @@ import javafx.beans.property.SimpleDoubleProperty;
 
 public class Luggage {
     
-    private String label_number;
+    private String labelNumber;
     private String type;
     private String brand;
     private String color;
-    private String special_features;
+    private String specialFeatures;
     private String owner;
     private String status;
     private String location;
-    private String lost_location;
-    private String found_date;
-    private String lost_date;
+    private String lostLocation;
+    private String foundDate;
+    private String lostDate;
+    private String flightId;
+    private int customerId;
     private double compesation;
+
+   
+    public Luggage() {}
     
-    public Luggage(String label_number, String type, String brand, 
-            String color, String special_features, String owner, 
-            String status, String location, String lost_location, 
-            String found_date, double compesation) {
+    public boolean saveLuggage() {
         
+        DB database = new DB();
         
+        String queryStep2 = String.format("INSERT INTO luggage (label_number, type, brand, special_features, owner, status, location, lost_location, found_date, lost_date, compesation, customer_ID)" +
+                " VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+                getLabelNumber(), getType(), getBrand(), getSpecialFeatures(), getOwner(), getStatus(), getLocation(), getLostLocation(), getFoundDate(), getLostDate(), getCompesation(), getCustomerId());
+        
+        database.executeUpdateQuery(queryStep2);
+        
+        return true;
+    }
+    
+    public String getLabelNumber() {
+        return labelNumber;
     }
 
-    public String getLabel_number() {
-        return label_number;
-    }
-
-    public void setLabel_number(String label_number) {
-        this.label_number = label_number;
+    public void setLabelNumber(String labelNumber) {
+        this.labelNumber = labelNumber;
     }
 
     public String getType() {
@@ -58,12 +68,12 @@ public class Luggage {
         this.color = color;
     }
 
-    public String getSpecial_features() {
-        return special_features;
+    public String getSpecialFeatures() {
+        return specialFeatures;
     }
 
-    public void setSpecial_features(String special_features) {
-        this.special_features = special_features;
+    public void setSpecialFeatures(String specialFeatures) {
+        this.specialFeatures = specialFeatures;
     }
 
     public String getOwner() {
@@ -90,28 +100,36 @@ public class Luggage {
         this.location = location;
     }
 
-    public String getLost_location() {
-        return lost_location;
+    public String getLostLocation() {
+        return lostLocation;
     }
 
-    public void setLost_location(String lost_location) {
-        this.lost_location = lost_location;
+    public void setLostLocation(String lostLocation) {
+        this.lostLocation = lostLocation;
     }
 
-    public String getFound_date() {
-        return found_date;
+    public String getFoundDate() {
+        return foundDate;
     }
 
-    public void setFound_date(String found_date) {
-        this.found_date = found_date;
+    public void setFoundDate(String foundDate) {
+        this.foundDate = foundDate;
     }
 
-    public String getLost_date() {
-        return lost_date;
+    public String getLostDate() {
+        return lostDate;
     }
 
-    public void setLost_date(String lost_date) {
-        this.lost_date = lost_date;
+    public void setLostDate(String lostDate) {
+        this.lostDate = lostDate;
+    }
+
+    public String getFlightId() {
+        return flightId;
+    }
+
+    public void setFlightId(String flightId) {
+        this.flightId = flightId;
     }
 
     public double getCompesation() {
@@ -121,8 +139,13 @@ public class Luggage {
     public void setCompesation(double compesation) {
         this.compesation = compesation;
     }
-    
-    
-    
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
     
 }

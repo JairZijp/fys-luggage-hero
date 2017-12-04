@@ -70,42 +70,43 @@ public class RegisterLuggage {
     @FXML
     private boolean saveLuggage(ActionEvent event) throws IOException, SQLException {
         
+        Luggage luggage = new Luggage();
+        Customer customer = new Customer();
+        
+        
         /* Step 1. */
-        final String name = NameField.getText().toString();
-        final String email = EmailField.getText().toString();
-        final String city = CityField.getText().toString();
-        final String address = AddressField.getText().toString();
-        final String country = CountryField.getText().toString();
-        final String phoneNumber = PhoneNumberField.getText().toString();
-        final String zipcode = ZipcodeField.getText().toString();
+        customer.setName(NameField.getText().toString());
+        customer.setEmail(EmailField.getText().toString());
+        customer.setAddress(AddressField.getText().toString());
+        customer.setCity(CityField.getText().toString());
+        customer.setCountry(CountryField.getText().toString());
+        customer.setZipcode(ZipcodeField.getText().toString());
+        customer.setPhoneNumber(PhoneNumberField.getText().toString());
+        
+        customer.saveCustomer();
+        String addedCustomerId = customer.getLastId();
+        System.out.printf("Customer ID: " + addedCustomerId);
+        
         
         /* Step 2. */
-        final String labelNumber = LabelNumberField.getText().toString();
-        final String type = TypeField.getText().toString();
-        final String flightId = FlightIDField.getText().toString();
-        final String brand = BrandField.getText().toString();
-        final String location = LocationField.getText().toString();
-        final String foundDate = FoundDateField.getValue().toString();
-        final String lostDate = LostDateField.getValue().toString();
-        final String status = StatusField.getText().toString();
-        final String compesation = CompesationField.getText().toString();
-        final String specialFeatures = SpecialFeaturesField.getText().toString();
-        final String lostLocation = LostLocationField.getText().toString();
-        
-        DB database = new DB();
-        
-        String queryStep1 = String.format("INSERT INTO customer (name, email, address, city, zipcode, country, phone)" +
-                "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-                name, email, address, city, zipcode, country, phoneNumber);
-        
-        String queryStep2 = String.format("INSERT INTO luggage (label_number, type, brand, special_features, owner, status, location, lost_location, found_date, lost_date, compesation)" +
-                "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-                labelNumber, type, brand, specialFeatures, name, status, location, lostLocation, foundDate, lostDate, compesation );
-        
-        database.executeUpdateQuery(queryStep1);
-        database.executeUpdateQuery(queryStep2);
+        luggage.setCustomerId(Integer.parseInt(addedCustomerId));
+        luggage.setLabelNumber(LabelNumberField.getText().toString());
+        luggage.setType(TypeField.getText().toString());
+        luggage.setBrand(BrandField.getText().toString());
+        luggage.setLocation(LocationField.getText().toString());
+        luggage.setFoundDate(FoundDateField.getValue().toString());
+        luggage.setLostDate(LostDateField.getValue().toString());
+        luggage.setStatus(StatusField.getText().toString());
+        luggage.setLostLocation(LostLocationField.getText().toString());
+        luggage.setCompesation(Double.parseDouble(CompesationField.getText()));
+        luggage.setSpecialFeatures(SpecialFeaturesField.getText().toString());
+        luggage.setFlightId(FlightIDField.getText().toString());
+        luggage.setOwner(NameField.getText().toString());
+   
+        luggage.saveLuggage();
         
         return true;
+        
     }
     
     @FXML

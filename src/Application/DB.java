@@ -166,6 +166,7 @@ public class DB {
         return result;
     }
     
+    
     /***
      * Executes query that is expected to return a list of String values
      * @param sql   the full sql text of the query.     
