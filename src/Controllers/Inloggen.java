@@ -1,7 +1,7 @@
 package Controllers;
 
-import static Controllers.UsersCreate.HashPassword;
 import Models.DB;
+import Models.User;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
@@ -23,9 +23,12 @@ public class Inloggen {
     
     @FXML
     private void Login(ActionEvent event) throws NoSuchAlgorithmException, IOException, SQLException{
+        
+        User user = new User();
+        
         String username = UsernameField.getText().toString(),
                 password = PasswordField.getText().toString(),
-                hashedPassword = HashPassword(password);
+                hashedPassword = user.HashPassword(password);
         
         DB Connection = new DB();
         
