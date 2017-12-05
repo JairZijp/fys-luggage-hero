@@ -1,5 +1,7 @@
 package Models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
@@ -34,6 +36,18 @@ public class Luggage {
         database.executeUpdateQuery(queryStep2);
         
         return true;
+    }
+    
+    public ResultSet getLuggage() throws SQLException {
+        
+        DB database = new DB();
+        
+        String queryGetLuggage = String.format("SELECT * FROM luggage ORDER BY ID ASC");
+        
+        ResultSet queryResults = database.executeResultSetQuery(queryGetLuggage);
+        
+        return queryResults;
+        
     }
     
     public String getLabelNumber() {
