@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Application.Menu">
+            fx:controller="Controllers.Menu">
     <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <children>
             <Label text="Label"/>

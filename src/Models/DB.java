@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Application;
+package Models;
 
 import java.sql.*;
 import java.util.Enumeration;
@@ -165,6 +165,7 @@ public class DB {
         
         return result;
     }
+    
     
     /***
      * Executes query that is expected to return a list of String values
