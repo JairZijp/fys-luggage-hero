@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Application;
+package Controllers;
 
 /**
  *
  * @author jairz
+ * FXML Controller LostLugagge
  */
-public class Statistics {
+public class LostLuggage {
+        
     
 }

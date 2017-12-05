@@ -1,4 +1,4 @@
-package Application;
+package Controllers;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -9,7 +9,7 @@ public class LostAndFound {
     
     @FXML
     public void goToNew(ActionEvent event) throws IOException {
-        Main.GoToScreen("RegisterLuggage.fxml");
+        Main.GoToScreen("../Views/RegisterLuggage.fxml");
     }
     
 }

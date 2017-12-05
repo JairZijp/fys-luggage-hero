@@ -1,6 +1,8 @@
-package Application;
+package Controllers;
 
+import Models.DB;
 import javafx.application.Application;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,7 +20,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("LostAndFound.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../Views/LostAndFound.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, StageWidth, StageHeight));
         primaryStage.show();
@@ -28,7 +30,8 @@ public class Main extends Application {
 
     public static void GoToScreen(String name) throws IOException {
         //Dit is een test..
-        Parent root = FXMLLoader.load(Main.class.getResource(name));
+        System.out.println("Opening" + name);
+        Parent root = FXMLLoader.load(Main.class.getResource("../Views/" + name));
         thePrimaryStage.setTitle("Hello World");
         thePrimaryStage.setScene(new Scene(root, StageWidth, StageHeight));
         thePrimaryStage.show();
