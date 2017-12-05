@@ -1,6 +1,7 @@
-package Application;
+package Controllers;
 
-import static Application.UsersCreate.HashPassword;
+import Models.DB;
+import Models.User;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ public class Inloggen {
     private void Login(ActionEvent event) throws NoSuchAlgorithmException, IOException, SQLException{
         String username = UsernameField.getText().toString(),
                 password = PasswordField.getText().toString(),
-                hashedPassword = HashPassword(password);
+                hashedPassword = User.HashPassword(password);
         
         DB Connection = new DB();
         
