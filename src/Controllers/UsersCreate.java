@@ -1,6 +1,7 @@
 package Controllers;
 
 import Controllers.Main;
+import Models.User;
 import Models.DB;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -57,40 +58,46 @@ public class UsersCreate implements Initializable {
      */
     @FXML
     private boolean SaveUser(ActionEvent event) throws IOException, SQLException, NoSuchAlgorithmException{
+        System.out.println("Starting to save..");
         //use this variable to check if user can be registered
         boolean passed = true;
         String validationErrors = "";
         
+        //nieuwe user aanmaken
+        User newUser = new User();
+        
         //To String after every getText so it can be checked on being empty
-        final String username = UserNameField.getText().toString();
-        final String name = NameField.getText().toString();
-        final String email = MailField.getText().toString();
-        final String role = RoleField.getSelectionModel().getSelectedItem().toString();
-        final String password = PasswordField.getText().toString();
+        newUser.setUsername(UserNameField.getText().toString());
+        newUser.setName(NameField.getText().toString());
+        newUser.setRole(RoleField.getSelectionModel().getSelectedItem().toString());
+        newUser.setEmail(MailField.getText().toString());
+        newUser.setPassword(PasswordField.getText().toString());
         final String confirmPassword = ConfirmPasswordField.getText().toString();
         
+        
+        System.out.println("Validation...");
         //values can not be null
-        if(name == null || username == null || email == null || role == null || password == null){
+        if(!newUser.isValid()){
             ValidationLabel.setText("Fill in all fields");
             return false;
         }
         
-        //mail has to match regex
-        Pattern ptr = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
-                Pattern.CASE_INSENSITIVE);
-        if(! ptr.matcher(email).matches()){
+        System.out.println("Validating Email...");
+        //User needs valid Email
+        if(!newUser.hasValidEmail()){
             ValidationLabel.setText("E-mail is invalid");
             return false;
         }
         
+        System.out.println("Validating Passwords...");
         //password and confirmpassword has to be same values
-        if(password == null ? confirmPassword != null : !password.equals(confirmPassword)){
+        if(newUser.Password() == null ? confirmPassword != null : !newUser.Password().equals(User.HashPassword(confirmPassword))){
             ValidationLabel.setText("Passwords do not match.");
             return false;
         }
         
-        if(!UserExists(username, email)){
-            InsertUser(username, name, role, password, email);
+        if(!newUser.Exists()){
+            newUser.Save();
         }else{
             ValidationLabel.setText("User already exists with this username/email");
             return false;
@@ -99,78 +106,5 @@ public class UsersCreate implements Initializable {
         //Navigate back to the list
         Main.GoToScreen("Users.fxml");
         return true;
-    }
-    
-    public static String HashPassword(String Password) throws NoSuchAlgorithmException{
-        MessageDigest m = MessageDigest.getInstance("MD5");
-        m.update(Password.getBytes(), 0, Password.length());    
-        return new BigInteger(1, m.digest()).toString(16);
-    }
-    
-    private boolean UserExists(String Username, String Email) throws SQLException {
-        boolean exists;
-        DB Connection = new DB();
-        //Simpele query om te kijken of er een record dubbel is, niet specifiek welke record.
-        String sql = String.format("SELECT * FROM user WHERE `username` = '%s' OR `email` = '%s'", Username, Email);
-        ResultSet queryResult = Connection.executeResultSetQuery(sql);
-        
-        exists = queryResult.first();
-        
-        Connection.close();
-        
-        return exists;
-    }
-    
-    private void InsertUser(String Username, String Name, String Role, String Password, String Email) throws NoSuchAlgorithmException{
-        //Make Connection                
-        DB Connection = new DB(); 
-        String sql = String.format("INSERT INTO user (username, name, role, password, email)" +
-                "VALUES ('%s', '%s', '%s', '%s', '%s')",
-                Username, Name, Role, HashPassword(Password), Email);
-        
-        //execute query and close connection     
-        Connection.executeUpdateQuery(sql);
-        Connection.close();
-    }
-}
-
-//User Class structure(needs imporvement)
-class User{
-    private final String Username;
-    private final String Name;    
-    private final String Role;
-    private final String Email;
-    private final String Password;
-    
-    public User(String Username, String Name, String Role, String Email, String Password){
-        this.Username = Username;
-        this.Name = Name;
-        this.Role = Role;
-        this.Email = Email;
-        this.Password = Password;        
-    }
-    
-    public String Username(){
-        return this.Username;
-    }
-    
-    public String Name(){
-        return this.Name;
-    }
-    
-    public String Role(){
-        return this.Role;
-    }
-    
-    public String Email(){
-        return this.Email;
-    }
-    
-    public boolean isValid(){
-        return this.Username != null &&
-                this.Name != null &&                
-                this.Role != null &&
-                this.Email != null &&
-                this.Password != null;
     }
 }
