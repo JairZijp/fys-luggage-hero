@@ -35,7 +35,19 @@ public class Inloggen {
         ResultSet queryResult = Connection.executeResultSetQuery(sql);
         
         if(queryResult.first()){
-            Connection.close();
+            //create new user
+            User user = new User();
+            
+            //set properties of current user
+            user.setUsername(queryResult.getString("username"));
+            user.setName(queryResult.getString("name"));
+            user.setEmail(queryResult.getString("email"));
+            user.setRole(queryResult.getString("role"));
+            
+            //set current user in main class
+            Main.setCurrentUser(user);
+            
+            //Navigate back to old screen
             Main.GoToScreen("LostAndFound.fxml");
         }else{
             ErrorLabel.setText("Incorrect username/password");
