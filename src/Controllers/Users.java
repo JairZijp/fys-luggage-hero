@@ -33,14 +33,16 @@ public class Users implements Initializable {
     private TableView UsersTable;
 
     private ObservableList<User> UsersList = FXCollections.observableArrayList();
-//    @FXML
-//    private TableColumn<ObservableList<String>, String> TableID;
-//    @FXML
-//    private TableColumn<ObservableList<String>, String> TableUsername;
-//    @FXML
-//    private TableColumn<ObservableList<String>, String> TableName;
-//    @FXML
-//    private TableColumn<ObservableList<String>, String> TableRole;
+    @FXML
+    private TableColumn ID;
+    @FXML
+    private TableColumn Username;
+    @FXML
+    private TableColumn Name;
+    @FXML
+    private TableColumn Role;
+    @FXML
+    private TableColumn Email;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -68,14 +70,13 @@ public class Users implements Initializable {
                 String PropertyName = tc.getId();
                 if (PropertyName != null && !PropertyName.isEmpty()) {
                     System.out.println("Property name not null: " + PropertyName);
-                    tc.setCellFactory(new PropertyValueFactory<>(PropertyName));
+                    tc.setCellValueFactory(new PropertyValueFactory<User, String>(PropertyName));
                     String temp = "";
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
-        }        
-        
+        }  
 
         Connection.close();
     }

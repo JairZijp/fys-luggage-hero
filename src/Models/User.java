@@ -17,12 +17,12 @@ import java.util.regex.Pattern;
  * @author Simon
  */
 public class User{
-    public int ID;
-    public String Username;
-    public String Name;    
-    public String Role;
-    public String Email;
-    public String Password;
+    private int ID;
+    private String Username;
+    private String Name;    
+    private String Role;
+    private String Email;
+    private String Password;
 
     public void setID(int ID) {
         this.ID = ID;

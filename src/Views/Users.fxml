@@ -27,6 +27,7 @@
                                 <TableColumn fx:id="Name" editable="false" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="-1.0" text="Name" />
                                 <TableColumn fx:id="Role" editable="false" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="-1.0" text="Role" />
                                 <TableColumn fx:id="Email" editable="false" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="-1.0" text="Email" />
+                        <TableColumn prefWidth="75.0" text="Actions" />
                             </columns>
                         </TableView>
                     </children>
