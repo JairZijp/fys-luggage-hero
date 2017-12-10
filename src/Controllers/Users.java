@@ -30,9 +30,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class Users implements Initializable {
 
     @FXML
-    private TableView UsersTable;
+    private TableView<User> UsersTable;
 
     private ObservableList<User> UsersList = FXCollections.observableArrayList();
+    
     @FXML
     private TableColumn ID;
     @FXML
@@ -69,7 +70,6 @@ public class Users implements Initializable {
                 TableColumn tc = (TableColumn) UsersTable.getColumns().get(i);
                 String PropertyName = tc.getId();
                 if (PropertyName != null && !PropertyName.isEmpty()) {
-                    System.out.println("Property name not null: " + PropertyName);
                     tc.setCellValueFactory(new PropertyValueFactory<User, String>(PropertyName));
                     String temp = "";
                 }
@@ -90,5 +90,20 @@ public class Users implements Initializable {
     @FXML
     private void GoToCreate(ActionEvent event) throws IOException {
         Main.GoToScreen("UsersCreate.fxml");
+    }
+    
+    @FXML
+    private void DeleteUser(ActionEvent event) throws SQLException{
+        User selectedUser = (User) UsersTable.getSelectionModel().getSelectedItem();
+        int userIDToDelete = selectedUser.getID();
+        
+        //Removing record from database
+        DB Connection = new DB();
+        String sql = String.format("DELETE FROM `user` WHERE `ID` = %s", userIDToDelete);
+        Connection.executeDeleteQuery(sql);
+        Connection.close();
+        
+        //Removing record from tableview
+        UsersList.remove(selectedUser);
     }
 }
