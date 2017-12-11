@@ -21,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
 
 /**
  *
- * @author jairz
+ * @author Jaïr Zijp
  * FXML Controller RegisterLuggage
  */
 public class RegisterLuggage {
@@ -54,6 +54,8 @@ public class RegisterLuggage {
     private TextField FlightIDField;
     @FXML
     private TextField BrandField;
+    @FXML
+    private TextField ColorField;
     @FXML
     private TextField LocationField;
     @FXML
@@ -97,6 +99,7 @@ public class RegisterLuggage {
         luggage.setBrand(BrandField.getText().toString());
         luggage.setLocation(LocationField.getText().toString());
         luggage.setFoundDate(FoundDateField.getValue().toString());
+        luggage.setColor(ColorField.getText().toString());
         luggage.setLostDate(LostDateField.getValue().toString());
         luggage.setStatus(StatusField.getText().toString());
         luggage.setLostLocation(LostLocationField.getText().toString());
