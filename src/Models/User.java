@@ -17,36 +17,15 @@ import java.util.regex.Pattern;
  * @author Simon
  */
 public class User{
+    private int ID;
     private String Username;
     private String Name;    
     private String Role;
     private String Email;
     private String Password;
 
-    public void Save() throws NoSuchAlgorithmException{
-        //Make Connection                
-        DB Connection = new DB(); 
-        String sql = String.format("INSERT INTO user (username, name, role, password, email)" +
-                "VALUES ('%s', '%s', '%s', '%s', '%s')",
-                this.Username, this.Name, this.Role, this.Password, this.Email);
-        
-        //execute query and close connection     
-        Connection.executeUpdateQuery(sql);
-        Connection.close();
-    }
-    
-    public boolean Exists() throws SQLException{
-          boolean exists;
-        DB Connection = new DB();
-        //Simpele query om te kijken of er een record dubbel is, niet specifiek welke record.
-        String sql = String.format("SELECT * FROM user WHERE `username` = '%s' OR `email` = '%s'", this.Username, this.Email);
-        ResultSet queryResult = Connection.executeResultSetQuery(sql);
-        
-        exists = queryResult.first();
-        
-        Connection.close();
-        
-        return exists;
+    public void setID(int ID) {
+        this.ID = ID;
     }
     
     public void setUsername(String Username){
@@ -69,32 +48,63 @@ public class User{
         this.Password = HashPassword(Password);
     }
     
-    public String Username(){
-        return this.Username;
+    public int getID() {
+        return ID;
     }
     
-    public String Name(){
-        return this.Name;
+    public String getUsername(){
+        return Username;
     }
     
-    public String Role(){
-        return this.Role;
+    public String getName(){
+        return Name;
     }
     
-    public String Email(){
-        return this.Email;
+    public String getRole(){
+        return Role;
     }
     
-    public String Password(){
-        return this.Password;
+    public String getEmail(){
+        return Email;
     }
     
+    public String getPassword(){
+        return Password;
+    }
+    
+
     public boolean isValid(){
         return this.Username != null &&
                 this.Name != null &&                
                 this.Role != null &&
                 this.Email != null &&
                 this.Password != null;
+    }
+    
+     public void Save() throws NoSuchAlgorithmException{
+        //Make Connection                
+        DB Connection = new DB(); 
+        String sql = String.format("INSERT INTO user (username, name, role, password, email)" +
+                "VALUES ('%s', '%s', '%s', '%s', '%s')",
+                this.Username, this.Name, this.Role, this.Password, this.Email);
+        
+        //execute query and close connection     
+        Connection.executeUpdateQuery(sql);
+        Connection.close();
+    }
+    
+    public boolean Exists() throws SQLException{
+        boolean exists;
+        DB Connection = new DB();
+        //Simpele query om te kijken of er een record dubbel is, niet specifiek welke record.
+        String sql = String.format("SELECT * FROM user WHERE `username` = '%s' OR `email` = '%s'", this.Username, this.Email);
+        ResultSet queryResult = Connection.executeResultSetQuery(sql);
+        
+        exists = queryResult.first();
+        
+        Connection.close();
+        
+        return exists;
     }
     
     public boolean hasValidEmail(){
