@@ -23,6 +23,9 @@ public class Inloggen {
     
     @FXML
     private void Login(ActionEvent event) throws NoSuchAlgorithmException, IOException, SQLException{
+        
+        User user = new User();
+        
         String username = UsernameField.getText().toString(),
                 password = PasswordField.getText().toString(),
                 hashedPassword = User.HashPassword(password);
