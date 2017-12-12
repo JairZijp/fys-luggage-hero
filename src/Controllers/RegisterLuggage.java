@@ -110,6 +110,7 @@ public class RegisterLuggage {
    
         luggage.saveLuggage();
         
+        Main.GoToScreen("LostAndFound.fxml");
         return true;
         
     }

@@ -1,19 +1,13 @@
 package Controllers;
 
-import Controllers.Main;
 import Models.User;
-import Models.DB;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.net.URL;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -83,7 +77,7 @@ public class UsersCreate implements Initializable {
         }
         
         System.out.println("Validating Email...");
-        //User needs valid Email
+        //User needs valid getEmail
         if(!newUser.hasValidEmail()){
             ValidationLabel.setText("E-mail is invalid");
             return false;
@@ -91,7 +85,7 @@ public class UsersCreate implements Initializable {
         
         System.out.println("Validating Passwords...");
         //password and confirmpassword has to be same values
-        if(newUser.Password() == null ? confirmPassword != null : !newUser.Password().equals(User.HashPassword(confirmPassword))){
+        if(newUser.getPassword() == null ? confirmPassword != null : !newUser.getPassword().equals(User.HashPassword(confirmPassword))){
             ValidationLabel.setText("Passwords do not match.");
             return false;
         }

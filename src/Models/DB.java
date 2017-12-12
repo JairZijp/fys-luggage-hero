@@ -166,6 +166,12 @@ public class DB {
         return result;
     }
     
+    public boolean executeDeleteQuery(String sql) throws SQLException{
+        String Query = sql;
+        PreparedStatement prepStmt = this.connection.prepareStatement(Query);
+        log(sql);
+        return prepStmt.execute();        
+    }
     
     /***
      * Executes query that is expected to return a list of String values
