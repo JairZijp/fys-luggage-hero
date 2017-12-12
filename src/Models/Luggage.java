@@ -21,6 +21,7 @@ public class Luggage {
     private String flightId;
     private int customerId;
     private double compesation;
+    private int ID;
 
    
     public Luggage() {}
@@ -161,5 +162,10 @@ public class Luggage {
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
-    
+    public int getID(){
+        return ID;
+    }
+    public void setID(int id){
+        this.ID= id;
+    }
 }
