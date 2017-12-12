@@ -1,5 +1,7 @@
 package Models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
@@ -19,6 +21,7 @@ public class Luggage {
     private String flightId;
     private int customerId;
     private double compesation;
+    private int ID;
 
    
     public Luggage() {}
@@ -34,6 +37,18 @@ public class Luggage {
         database.executeUpdateQuery(queryStep2);
         
         return true;
+    }
+    
+    public ResultSet getLuggage() throws SQLException {
+        
+        DB database = new DB();
+        
+        String queryGetLuggage = String.format("SELECT * FROM luggage ORDER BY ID ASC");
+        
+        ResultSet queryResults = database.executeResultSetQuery(queryGetLuggage);
+        
+        return queryResults;
+        
     }
     
     public String getLabelNumber() {
@@ -147,5 +162,10 @@ public class Luggage {
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
-    
+    public int getID(){
+        return ID;
+    }
+    public void setID(int id){
+        this.ID= id;
+    }
 }
