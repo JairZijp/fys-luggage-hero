@@ -35,9 +35,9 @@ public class Luggage {
         
         DB database = new DB();
         
-        String queryStep2 = String.format("INSERT INTO luggage (label_number, type, brand, special_features, owner, status, location, lost_location, found_date, lost_date, compesation, customer_ID, color)" +
-                " VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-                getLabelNumber(), getType(), getBrand(), getSpecialFeatures(), getOwner(), getStatus(), getLocation(), getLostLocation(), getFoundDate(), getLostDate(), getCompesation(), getCustomerId(), getColor());
+        String queryStep2 = String.format("INSERT INTO luggage (label_number, type, brand, special_features, owner, status, location, lost_location, found_date, lost_date, compesation, customer_ID, color, flight_id)" +
+                " VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s')",
+                getLabelNumber(), getType(), getBrand(), getSpecialFeatures(), getOwner(), getStatus(), getLocation(), getLostLocation(), getFoundDate(), getLostDate(), getCompesation(), getCustomerId(), getColor(), getFlightId());
         
         database.executeUpdateQuery(queryStep2);
         
@@ -54,6 +54,15 @@ public class Luggage {
         
         return queryResults;
         
+    }
+    
+    public boolean isValid(){
+        return getLabelNumber() != null &&
+                getType() != null &&                
+                getColor() != null &&
+                getStatus() != null &&
+                getLostDate() != null &&
+                getLostLocation() != null;
     }
     
     public String getLabelNumber() {

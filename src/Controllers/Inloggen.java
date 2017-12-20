@@ -38,8 +38,7 @@ public class Inloggen {
         ResultSet queryResult = Connection.executeResultSetQuery(sql);
         
         if(queryResult.first()){
-            //create new user
-            User user = new User();
+           
             
             //set properties of current user
             user.setUsername(queryResult.getString("username"));
