@@ -57,12 +57,12 @@ public class Luggage {
     }
     
     public boolean isValid(){
-        return getLabelNumber() != null &&
-                getType() != null &&                
-                getColor() != null &&
-                getStatus() != null &&
-                getLostDate() != null &&
-                getLostLocation() != null;
+        return this.labelNumber != null &&
+                this.type != null &&                
+                this.color != null &&
+                this.status != null &&
+                this.lostDate != null &&
+                this.lostLocation != null;
     }
     
     public String getLabelNumber() {
