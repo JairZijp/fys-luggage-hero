@@ -1,16 +1,11 @@
 package Controllers;
 
-import Models.DB;
 import Models.User;
 import javafx.application.Application;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.sql.*;
-import java.util.Enumeration;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -31,9 +26,6 @@ public class Main extends Application {
     }
 
     public static void GoToScreen(String name) throws IOException {
-        //Dit is een test..
-        System.out.println("Opening" + name);
-        System.out.println("User: " + CurrentUser.getName());
         Parent root = FXMLLoader.load(Main.class.getResource("../Views/" + name));
         thePrimaryStage.setTitle("Hello World");
         thePrimaryStage.setScene(new Scene(root, StageWidth, StageHeight));

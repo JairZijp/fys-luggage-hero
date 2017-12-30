@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.Roles;
 import Models.User;
 import java.io.IOException;
 import java.net.URL;
@@ -37,13 +38,14 @@ public class UsersCreate implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb){        
-        List<String> list = new ArrayList<>();
-        list.add("Manager");
-        list.add("Servicedesk");
-        list.add("Traveler");
-        ObservableList obList = FXCollections.observableList(list);
+//        List<String> list = new ArrayList<>();
+//        list.add("Manager");
+//        list.add("Servicedesk");
+//        list.add("Traveler");
+//        ObservableList obList = FXCollections.observableList(list);
+        ObservableList RolesList = Roles.GetRolesObservableList();
         RoleField.getItems().clear();
-        RoleField.setItems(obList);
+        RoleField.setItems(RolesList);
     }    
     
     /**
@@ -69,21 +71,18 @@ public class UsersCreate implements Initializable {
         final String confirmPassword = ConfirmPasswordField.getText().toString();
         
         
-        System.out.println("Validation...");
         //values can not be null
-        if(!newUser.isValid()){
+        if(!newUser.IsNotEmpty()){
             ValidationLabel.setText("Fill in all fields");
             return false;
         }
         
-        System.out.println("Validating Email...");
         //User needs valid getEmail
         if(!newUser.hasValidEmail()){
             ValidationLabel.setText("E-mail is invalid");
             return false;
         }
         
-        System.out.println("Validating Passwords...");
         //password and confirmpassword has to be same values
         if(newUser.getPassword() == null ? confirmPassword != null : !newUser.getPassword().equals(User.HashPassword(confirmPassword))){
             ValidationLabel.setText("Passwords do not match.");

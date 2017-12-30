@@ -37,8 +37,7 @@ public class Inloggen {
         
         ResultSet queryResult = Connection.executeResultSetQuery(sql);
         
-        if(queryResult.first()){
-           
+        if(queryResult.first()){           
             
             //set properties of current user
             user.setUsername(queryResult.getString("username"));

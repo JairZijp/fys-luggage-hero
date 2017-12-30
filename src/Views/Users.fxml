@@ -31,6 +31,7 @@
                             </columns>
                         </TableView>
                   <Button layoutX="335.0" layoutY="-8.0" mnemonicParsing="false" onAction="#DeleteUser" text="Delete User" AnchorPane.rightAnchor="74.0" />
+                  <Button layoutX="265.0" layoutY="-8.0" mnemonicParsing="false" onAction="#GoToEdit" text="Edit User" AnchorPane.rightAnchor="158.0" />
                     </children>
                <BorderPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

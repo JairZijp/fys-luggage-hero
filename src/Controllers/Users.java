@@ -92,6 +92,7 @@ public class Users implements Initializable {
         Main.GoToScreen("UsersCreate.fxml");
     }
     
+    
     @FXML
     private void DeleteUser(ActionEvent event) throws SQLException{
         User selectedUser = (User) UsersTable.getSelectionModel().getSelectedItem();
@@ -105,5 +106,13 @@ public class Users implements Initializable {
         
         //Removing record from tableview
         UsersList.remove(selectedUser);
+    }
+    
+    @FXML
+    private void GoToEdit(ActionEvent event) throws IOException{
+        User selectedUser = (User) UsersTable.getSelectionModel().getSelectedItem();
+        int userIDToEdit = selectedUser.getID();
+        UsersEdit.SetUsedToBeEdited(userIDToEdit);
+        Main.GoToScreen("UsersEdit.fxml");
     }
 }
