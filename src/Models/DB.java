@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Application;
+package Models;
 
 import java.sql.*;
 import java.util.Enumeration;
@@ -106,6 +106,94 @@ public class DB {
             return false;
         }
         return true;
+    }
+    
+    /***
+     * Executes a DDL, DML or DCL query that does not yield a result set
+     * @param sql   the full sql text of the query.      
+     * @return      the number of rows that have been impacted, -1 on error
+     */
+    public int executeUpdateQuery(String sql) {
+        try {
+            Statement s = this.connection.createStatement();
+            log(sql);
+            int n = s.executeUpdate(sql);
+            s.close();
+            return (n);
+        } catch (SQLException ex) {
+            // handle exception
+            error(ex);
+            return -1;
+        }
+    }
+
+    /***
+     * Executes an SQL query that yields a ResultSet with the outcome of the
+     * query. This outcome may be a single row with a single column in case of
+     * a scalar outcome.
+     * @param sql   the full sql text of the query. 
+     * @return      a ResultSet object that can iterate along all rows
+     * @throws SQLException 
+     */
+    public ResultSet executeResultSetQuery(String sql) throws SQLException { 
+        Statement s = this.connection.createStatement();
+        log(sql);
+        ResultSet rs = s.executeQuery(sql);
+        // cannot close the statement, because that also closes the resultset
+        return rs;
+    }
+    
+    /***
+     * Executes query that is expected to return a single String value
+     * @param sql   the full sql text of the query.       
+     * @return      the string result, null if no result or error
+     */
+    public String executeStringQuery(String sql) {
+        String result = null;
+        try {
+            Statement s = this.connection.createStatement();
+            log(sql);
+            ResultSet rs = s.executeQuery(sql);
+            if (rs.next()) {
+                result = rs.getString(1);              
+            }
+            // close both statement and resultset
+            s.close();
+        } catch (SQLException ex) {
+            error(ex);
+        }
+        
+        return result;
+    }
+    
+    public boolean executeDeleteQuery(String sql) throws SQLException{
+        String Query = sql;
+        PreparedStatement prepStmt = this.connection.prepareStatement(Query);
+        log(sql);
+        return prepStmt.execute();        
+    }
+    
+    /***
+     * Executes query that is expected to return a list of String values
+     * @param sql   the full sql text of the query.     
+     * @return      the string result, null if no result or error
+     */
+    public String executeStringListQuery(String sql) {
+        String result = null;
+        try {
+            Statement s = this.connection.createStatement();
+            log(sql);
+            ResultSet rs = s.executeQuery(sql);
+            if (rs.next()) {
+                result = rs.getString(1);              
+            }
+            // close both statement and resultset
+            s.close();
+        } catch (SQLException ex) {
+            error(ex);
+        }
+        
+        return result;
     }
 
     
