@@ -107,34 +107,49 @@ public class RegisterLuggage {
         
         /* Step 2 */
         flight.setFlightId(FlightIdField.getText().toString());
-        flight.setAirport(AirportField.getText().toString());
-        flight.setDate(DateField.getValue().toString());
+        flight.setAirport(AirportField.getText().toString()); 
         flight.setDestination(DestinationField.getText().toString());
         flight.setTime(TimeField.getText().toString());
         
+        if(DateField.getValue() != null) {
+            flight.setDate(DateField.getValue().toString());
+        }
         
-        /* Step 2. */
+        //values can not be null
+        if(!flight.isValid()){
+           ValidationLabel.setText("Please fill in all the required fields."); 
+           return false;
+        }
+        
+        /* Step 3. */
         luggage.setLabelNumber(LabelNumberField.getText().toString());
         luggage.setType(TypeField.getText().toString());
         luggage.setBrand(BrandField.getText().toString());
         luggage.setLocation(LocationField.getText().toString());
-        luggage.setFoundDate(FoundDateField.getValue().toString());
         luggage.setColor(ColorField.getText().toString());
-        luggage.setLostDate(LostDateField.getValue().toString());
         luggage.setStatus(StatusField.getText().toString());
         luggage.setLostLocation(LostLocationField.getText().toString());
-        luggage.setCompesation(Double.parseDouble(CompesationField.getText()));
+        if(!CompesationField.getText().isEmpty()) {
+            luggage.setCompesation(Double.parseDouble(CompesationField.getText()));
+        }
+        
+        if(FoundDateField.getValue() != null) {
+            luggage.setFoundDate(FoundDateField.getValue().toString());
+        }
+         
+        if(LostDateField.getValue() != null) {
+            luggage.setLostDate(LostDateField.getValue().toString());
+        }
+        
         luggage.setSpecialFeatures(SpecialFeaturesField.getText().toString());
         luggage.setFlightId(FlightIdField.getText().toString());
         luggage.setOwner(NameField.getText().toString());
    
          //values can not be null
         if(!luggage.isValid()){
-           ValidationLabel.setText("Fill in all fields");
-           System.out.println("False");
-            
+           ValidationLabel.setText("Please fill in all the required fields.");          
            return false;
-       }
+        }
         
         flight.saveFlight();
         customer.saveCustomer();
@@ -146,6 +161,8 @@ public class RegisterLuggage {
         luggage.saveLuggage();
         
         Main.GoToScreen("LostAndFound.fxml");
+       
+        System.out.println("Send");
         return true;
         
     }
