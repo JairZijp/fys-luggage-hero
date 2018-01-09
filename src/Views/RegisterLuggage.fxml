@@ -24,8 +24,6 @@
                               <Label layoutX="17.0" layoutY="226.0" prefHeight="18.0" prefWidth="105.0" text="Phonenumber:" />
                               
                               <Label layoutX="16.0" layoutY="357.0" prefHeight="18.0" prefWidth="63.0" text="Country:" />
-                              <ComboBox layoutX="14.0" layoutY="114.0" prefWidth="150.0" />
-                              <Label layoutX="16.0" layoutY="96.0" prefHeight="18.0" prefWidth="63.0" text="Airport:" />
                               <Label layoutX="16.0" layoutY="155.0" prefHeight="18.0" prefWidth="63.0" text="Name:" />
                               <Label layoutX="277.0" layoutY="217.0" prefHeight="18.0" prefWidth="63.0" text="Address:" />
                               <Label layoutX="16.0" layoutY="279.0" prefHeight="18.0" prefWidth="63.0" text="City:" />
@@ -54,10 +52,10 @@
                         <Label layoutX="461.0" layoutY="17.0" text="Step 2" />
                         <TextField fx:id="FlightIdField" layoutX="44.0" layoutY="118.0" />
                         <TextField fx:id="AirportField" layoutX="312.0" layoutY="118.0" />
-                        <Label layoutX="44.0" layoutY="101.0" text="Flight Id" />
-                        <Label layoutX="44.0" layoutY="184.0" text="Destination" />
-                        <Label layoutX="307.0" layoutY="184.0" text="Date" />
-                        <Label layoutX="48.0" layoutY="271.0" text="Time" />
+                        <Label layoutX="44.0" layoutY="101.0" text="Flight Id*" />
+                        <Label layoutX="44.0" layoutY="184.0" text="Destination*" />
+                        <Label layoutX="307.0" layoutY="184.0" text="Date*" />
+                        <Label layoutX="48.0" layoutY="271.0" text="Time*" />
                         <Button layoutX="394.0" layoutY="398.0" onAction="#nextStep2" mnemonicParsing="false" text="Next step" />
                         <Button layoutX="44.0" layoutY="398.0" onAction="#previousStep" mnemonicParsing="false" text="Previous step" />
                      </children>
@@ -67,16 +65,15 @@
                   <!-- Step 3 -->
                   <AnchorPane fx:id="Step3" prefHeight="600.0" prefWidth="599.0" visible="false">
                      <children>
-                        <Label layoutX="49.0" layoutY="58.0" text="Label number" />
-                        <Label layoutX="302.0" layoutY="58.0" text="Type" />
+                        <Label layoutX="49.0" layoutY="58.0" text="Label number*" />
+                        <Label layoutX="302.0" layoutY="58.0" text="Type*" />
                         <Label layoutX="49.0" layoutY="210.0" text="Brand" />
                         <TextField fx:id="LabelNumberField" layoutX="46.0" layoutY="79.0" />
                         <Label layoutX="301.0" layoutY="132.0" text="Special features" />
-                        <Label layoutX="49.0" layoutY="403.0" text="Status" />
+                        <Label layoutX="49.0" layoutY="403.0" text="Status*" />
                         <Label layoutX="303.0" layoutY="210.0" text="Current location" />
                         <Label layoutX="302.0" layoutY="412.0" prefHeight="17.0" prefWidth="70.0" text="Found date" />
-                        <Label layoutX="304.0" layoutY="339.0" text="Lost date" />
-                        <Label layoutX="49.0" layoutY="132.0" text="Flight ID" />
+                        <Label layoutX="304.0" layoutY="339.0" text="Lost date*" />
                         <Text layoutX="551.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Step 3" />
                         <TextField fx:id="TypeField" layoutX="300.0" layoutY="79.0" />
                         <TextArea fx:id="StatusField" layoutX="49.0" layoutY="427.0" prefHeight="98.0" prefWidth="185.0" />
@@ -88,7 +85,7 @@
                         <DatePicker fx:id="LostDateField" layoutX="303.0" layoutY="362.0" />
                         <TextField fx:id="CompesationField" layoutX="300.0" layoutY="500.0" />
                         <Button layoutX="395.0" layoutY="543.0" mnemonicParsing="false" onAction="#saveLuggage" text="Submit" />
-                        <Label layoutX="52.0" layoutY="339.0" text="Lost location" />
+                        <Label layoutX="52.0" layoutY="339.0" text="Lost location*" />
                         <TextField fx:id="ColorField" layoutX="49.0" layoutY="300.0" />
                         <Label layoutX="52.0" layoutY="271.0" text="Color" />
                         <Button layoutX="51.0" layoutY="543.0" mnemonicParsing="false" onAction="#previousStep2" text="Previous step" />

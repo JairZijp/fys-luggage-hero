@@ -34,6 +34,15 @@ public class Flight {
         return true;
          
     }
+     
+    public boolean isValid(){
+      return this.flightId != null &&
+              this.airport != null &&                
+              this.destination != null &&
+              this.date != null &&
+              this.time != null;
+  
+   }
     
     public String getFlightId() {
         return flightId;
@@ -74,8 +83,5 @@ public class Flight {
     public void setTime(String time) {
         this.time = time;
     }
-    
-    
-    
-    
+ 
 }
