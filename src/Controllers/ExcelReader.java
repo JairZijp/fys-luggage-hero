@@ -59,9 +59,6 @@ public class ExcelReader {
     }
 
     public List<String> getNextRow() {
-        
-        //System.out.println(this.rowIterator.next());
-        
         if (this.rowIterator.hasNext()) {
            
             return parseRow(this.rowIterator.next());
