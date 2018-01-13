@@ -99,7 +99,6 @@ public class UsersEdit implements Initializable {
 
         //validation if password isnt empty
         if (!PasswordField.getText().trim().isEmpty() && !ConfirmPasswordField.getText().trim().isEmpty() && PasswordField.getText().equals(ConfirmPasswordField.getText())) {
-            System.out.println("New password set");
             UserEdit.setPassword(PasswordField.getText());
         } else if (!PasswordField.getText().equals(ConfirmPasswordField.getText())) {
             // passwords are different

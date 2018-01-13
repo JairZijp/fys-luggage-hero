@@ -151,7 +151,6 @@ public class RegisterLuggage {
         flight.saveFlight();
         customer.saveCustomer();
         String addedCustomerId = customer.getLastId();
-        System.out.printf("Customer ID: " + addedCustomerId);
         
         luggage.setCustomerId(Integer.parseInt(addedCustomerId));
         
@@ -159,9 +158,7 @@ public class RegisterLuggage {
         
         Main.GoToScreen("LostAndFound.fxml");
        
-        System.out.println("Send");
         return true;
-        
     }
     
     @FXML
