@@ -220,7 +220,6 @@ public class DB {
         if (this.errorMessage == null) {
             this.errorMessage = msg;
         }
-        System.out.println(msg);
         e.printStackTrace();
 
         // if an error occurred, close the connection to prevent further operations

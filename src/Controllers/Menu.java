@@ -29,6 +29,4 @@ public class Menu{
     public void GoToImport(ActionEvent event) throws IOException {
         Main.GoToScreen("ImportExcel.fxml");
     }
-
-
 }

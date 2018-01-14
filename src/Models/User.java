@@ -48,6 +48,10 @@ public class User{
         this.Password = HashPassword(Password);
     }
     
+    public void setHashedPassword(String Password){
+        this.Password = Password;
+    }
+    
     public int getID() {
         return ID;
     }
@@ -73,7 +77,7 @@ public class User{
     }
     
 
-    public boolean isValid(){
+    public boolean IsNotEmpty(){
         return this.Username != null &&
                 this.Name != null &&                
                 this.Role != null &&
@@ -118,5 +122,17 @@ public class User{
         MessageDigest m = MessageDigest.getInstance("MD5");
         m.update(Password.getBytes(), 0, Password.length());    
         return new BigInteger(1, m.digest()).toString(16);
+    }
+
+    public void Update() {        
+        // create connection
+        DB Connection = new DB();
+        
+        // create update-query string
+        String sql = String.format("UPDATE user SET `username` = '%s', `name` = '%s', `role` = '%s', `password` = '%s', `email` = '%s' WHERE `ID` = %s",
+                this.Username, this.Name, this.Role, this.Password, this.Email, this.ID);
+        
+        // send query to database
+        Connection.executeUpdateQuery(sql);
     }
 }

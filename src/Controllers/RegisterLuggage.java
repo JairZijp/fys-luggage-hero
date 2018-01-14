@@ -9,12 +9,9 @@ import Models.Luggage;
 import Models.Customer;
 import Models.Flight;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -154,7 +151,6 @@ public class RegisterLuggage {
         flight.saveFlight();
         customer.saveCustomer();
         String addedCustomerId = customer.getLastId();
-        System.out.printf("Customer ID: " + addedCustomerId);
         
         luggage.setCustomerId(Integer.parseInt(addedCustomerId));
         
@@ -162,9 +158,7 @@ public class RegisterLuggage {
         
         Main.GoToScreen("LostAndFound.fxml");
        
-        System.out.println("Send");
         return true;
-        
     }
     
     @FXML
