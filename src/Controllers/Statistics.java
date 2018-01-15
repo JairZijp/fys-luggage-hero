@@ -171,7 +171,6 @@ public class Statistics implements Initializable {
             String dateFoundString = Data.getString("found_date").toString();
 
             if (dateFoundString != null && !dateFoundString.isEmpty()) {
-                System.out.println(dateFoundString);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
                 Date dateFound = dateFormat.parse(dateFoundString);

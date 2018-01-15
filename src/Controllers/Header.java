@@ -21,6 +21,6 @@ public class Header implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Welcome.setText(String.format("Welcome, %s!", Main.getCurrentUser().getUsername()));
+        Welcome.setText(String.format("Welcome, %s!", Main.getCurrentUser().getName()));
     }
 }

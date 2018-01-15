@@ -54,7 +54,6 @@ public class UsersCreate implements Initializable {
      */
     @FXML
     private boolean SaveUser(ActionEvent event) throws IOException, SQLException, NoSuchAlgorithmException{
-        System.out.println("Starting to save..");
         //use this variable to check if user can be registered
         boolean passed = true;
         String validationErrors = "";

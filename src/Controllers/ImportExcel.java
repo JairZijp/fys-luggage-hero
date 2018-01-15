@@ -1,19 +1,11 @@
 package Controllers;
 
 import Models.Customer;
-import Models.DB;
 import Models.Luggage;
-import java.awt.Desktop;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ResourceBundle;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import javafx.event.ActionEvent;
@@ -22,8 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class ImportExcel {
-        
-private Button chooseFile;
+
+    private Button chooseFile;
     private Window stage;
     private String fileName;
     private final String descriptionFilter = "Excel ";
@@ -31,50 +23,45 @@ private Button chooseFile;
     private ExcelReader excelReader;
     private final String error = "Bestand selecteren niet gelukt probeer opnieuw...";
     private List<List> mList = new ArrayList<>();
-   
+
     @FXML
     private Label status;
+
     @FXML
     private void ChooseFileAction(ActionEvent event) {
         //getting string for the ExcelReader
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         fileChooser.getExtensionFilters().addAll(
-        new FileChooser.ExtensionFilter((descriptionFilter + extentions) , extentions)
+                new FileChooser.ExtensionFilter((descriptionFilter + extentions), extentions)
         );
-        File selectedFile = fileChooser.showOpenDialog(stage);
         
-        if (selectedFile != null){
-            
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+
             String fileAsString = selectedFile.toString();
             excelReader = new ExcelReader(fileAsString);
             excelReader.setStartRow(5);
 //            getting new string
             List<String> nextRow = excelReader.getNextRow();
-            while(nextRow != null){
+            while (nextRow != null) {
                 mList.add(nextRow);
                 nextRow = excelReader.getNextRow();
-
             }
 
-            System.out.println();
-            System.out.println("READER FINISHED");
             status.setText("Bestand geupload: " + fileAsString);
-    }
-        else{
+        } else {
             status.setText(error);
-            System.out.println("Selectie niet gelukt");
         }
-    }    
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }  
-    @FXML
-    private void SubmitAction(ActionEvent event) throws SQLException{
-       // DB Connection = new DB();
+    }
 
-        for(int i=0; mList.size()>i; i++){
-                for(int j=0; j<mList.get(i).size(); j++){
+    @FXML
+    private void SubmitAction(ActionEvent event) throws SQLException {
+        // DB Connection = new DB();
+
+        for (int i = 0; mList.size() > i; i++) {
+            for (int j = 0; j < mList.get(i).size(); j++) {
                 //split a string when ther is a ", "
                 String[] values = mList.get(i).get(12).toString().split(", ");
                 Luggage luggage = new Luggage();
@@ -93,13 +80,7 @@ private Button chooseFile;
                 customer.setName(values[0]);
                 customer.setCity(values[1]);
                 customer.saveCustomer();
-
-                }
-  
-    } 
-
+            }
+        }
     }
 }
-
-
- 
