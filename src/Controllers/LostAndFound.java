@@ -2,6 +2,7 @@ package Controllers;
 
 import Controllers.Main;
 import Models.Luggage;
+import Models.User;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -36,10 +37,6 @@ public class LostAndFound implements Initializable{
     private TableColumn date;
     @FXML
     private TableColumn status;
-    
-    
-    
-    
     
     @Override
     public void initialize(URL url, ResourceBundle rb){  
@@ -103,10 +100,15 @@ public class LostAndFound implements Initializable{
             }
             System.out.println("");
         }
-        
-     
-        
-        
+   
+    }
+    
+    @FXML
+    private void GoToEdit(ActionEvent event) throws IOException{
+        Luggage selectedLuggage = (Luggage) LostAndFoundTableView.getSelectionModel().getSelectedItem();
+        int luggageIDToEdit = selectedLuggage.getID();
+        UsersEdit.SetUsedToBeEdited(luggageIDToEdit);
+        Main.GoToScreen("LuggageDetail.fxml");
     }
 
     
