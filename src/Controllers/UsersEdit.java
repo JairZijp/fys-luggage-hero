@@ -6,6 +6,7 @@
 package Controllers;
 
 import Models.DB;
+import Models.Luggage;
 import Models.Roles;
 import Models.User;
 import java.io.IOException;
@@ -35,6 +36,8 @@ public class UsersEdit implements Initializable {
 
     // new instance of user and define properties to save it quicker
     User UserEdit = new User();
+    
+    Luggage luggageEdit = new Luggage();
 
     @FXML
     private TextField UserNameField;

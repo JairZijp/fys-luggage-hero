@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.Luggage;
+import Models.User;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -116,6 +117,15 @@ public class LostAndFound implements Initializable {
                 LostAndFoundTableView.setItems(filteredItems);
             }
         }
+   
+    }
+    
+    @FXML
+    private void GoToLuggageDetail(ActionEvent event) throws IOException{
+        Luggage selectedLuggage = (Luggage) LostAndFoundTableView.getSelectionModel().getSelectedItem();
+        int luggageIdToView = selectedLuggage.getID();
+        LuggageDetailController.setLuggageViewId(luggageIdToView);
+        Main.GoToScreen("LuggageDetail.fxml");
     }
     
     @FXML
