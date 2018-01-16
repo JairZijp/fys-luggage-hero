@@ -25,7 +25,7 @@ import javafx.scene.control.TextField;
 /**
  * FXML Controller class
  *
- * @author jairz
+ * @author Jaïr Zijp
  */
 public class LuggageDetailController implements Initializable {
 
@@ -67,18 +67,19 @@ public class LuggageDetailController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            // open connection
+           
         DB Connection = new DB();
-        
-
-        // make query to get user by id
+       
+        // Get user by selected ID
         String sql = String.format("SELECT * FROM `luggage` WHERE `ID` = %s", luggageId);
 
         try {
-            // execute query
+            
             ResultSet queryResult = Connection.executeResultSetQuery(sql);
 
             if (queryResult.first()) {
+                
+                // Set all the properties from luggage model
                 LuggageView.setLabelNumber(queryResult.getString("label_number"));
                 LuggageView.setType(queryResult.getString("type"));
                 LuggageView.setColor(queryResult.getString("color"));
@@ -92,6 +93,7 @@ public class LuggageDetailController implements Initializable {
                 LuggageView.setCompesation(queryResult.getInt("compesation"));
                 LuggageView.setFlightId(queryResult.getString("flight_id"));
                 
+                // Get all the properties from luggage model
                 labelNumber.setText(LuggageView.getLabelNumber());
                 typeField.setText(LuggageView.getType());
                 brandField.setText(LuggageView.getBrand());

@@ -27,6 +27,7 @@ public class Customer {
         
         DB database = new DB();
         
+        // Save customer in DB
         String queryStep1 = String.format("INSERT INTO customer (name, email, address, city, zipcode, country, phone)" +
                 " VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                 name, email, address, city, zipcode, country, phoneNumber);
@@ -41,12 +42,14 @@ public class Customer {
         
         DB database = new DB();
         
+        // Get the ID from the last created customer.
         String queryLastId = String.format("SELECT ID FROM customer ORDER BY ID DESC LIMIT 1;");
         String queryResult = database.executeStringQuery(queryLastId);
          
         return queryResult;
     }
     
+    // Getters and setters
     public String getName() {
         return name;
     }

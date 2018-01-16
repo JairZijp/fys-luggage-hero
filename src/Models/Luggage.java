@@ -39,6 +39,7 @@ public class Luggage {
                 " VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s')",
                 getLabelNumber(), getType(), getBrand(), getSpecialFeatures(), getOwner(), getStatus(), getLocation(), getLostLocation(), getFoundDate(), getLostDate(), getCompesation(), getCustomerId(), getColor(), getFlightId());
         
+        // Save luggage in the DB
         database.executeUpdateQuery(queryStep2);
         
         return true;
@@ -50,6 +51,7 @@ public class Luggage {
         
         String queryGetLuggage = String.format("SELECT * FROM luggage ORDER BY ID ASC");
         
+        // Get luggage from DB for overview
         ResultSet queryResults = database.executeResultSetQuery(queryGetLuggage);
         
         return queryResults;
@@ -57,6 +59,8 @@ public class Luggage {
     }
     
     public boolean isValid(){
+        
+        // Check if some fields are not empty
         return this.labelNumber != null &&
                 this.type != null &&                
                 this.color != null &&
@@ -65,6 +69,8 @@ public class Luggage {
                 this.lostLocation != null;
     }
     
+    
+    // Getters and setters
     public String getLabelNumber() {
         return labelNumber;
     }

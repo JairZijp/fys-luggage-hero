@@ -19,12 +19,11 @@ public class Flight {
     private String date;
     private String time;
 
-    
-     public boolean saveFlight() throws SQLException {
+    public boolean saveFlight() throws SQLException {
         
         DB database = new DB();
         
-        // Make insert query and execute query.
+        // Insert flight data
         String query = String.format("INSERT INTO flight (flight_id, airport, destination, date, time)" +
                 " VALUES ('%s', '%s', '%s', '%s', '%s')",
                 flightId, airport, destination, date, time);
@@ -36,14 +35,18 @@ public class Flight {
     }
      
     public boolean isValid(){
-      return this.flightId != null &&
+        
+        // Check if fields aren't empty
+        return this.flightId != null &&
               this.airport != null &&                
               this.destination != null &&
               this.date != null &&
               this.time != null;
   
-   }
+    }
     
+    
+    // Getter and setters
     public String getFlightId() {
         return flightId;
     }
