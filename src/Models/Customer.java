@@ -22,7 +22,7 @@ public class Customer {
     private String country;
     private String phoneNumber;
 
-    
+    // Save customer
     public boolean saveCustomer() throws SQLException {
         
         DB database = new DB();
@@ -31,6 +31,21 @@ public class Customer {
         String queryStep1 = String.format("INSERT INTO customer (name, email, address, city, zipcode, country, phone)" +
                 " VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                 name, email, address, city, zipcode, country, phoneNumber);
+                
+        database.executeUpdateQuery(queryStep1);
+
+        return true;
+         
+    }
+    
+    // update customer
+     public boolean updateCustomer(int customerId) throws SQLException {
+        
+        DB database = new DB();
+        
+        // Save customer in DB
+        String queryStep1 = String.format("UPDATE customer SET name = '%s', email = '%s', address = '%s', city = '%s', zipcode = '%s', country = '%s', phone = '%s' WHERE = '%s'",
+                name, email, address, city, zipcode, country, phoneNumber, customerId);
                 
         database.executeUpdateQuery(queryStep1);
 

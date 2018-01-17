@@ -42,9 +42,7 @@ public class Flight {
               this.destination != null &&
               this.date != null &&
               this.time != null;
-  
     }
-    
     
     // Getter and setters
     public String getFlightId() {

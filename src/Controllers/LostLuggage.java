@@ -7,6 +7,7 @@ package Controllers;
 
 import Models.Customer;
 import Models.DB;
+import Models.Flight;
 import Models.Luggage;
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +34,9 @@ public class LostLuggage implements Initializable {
 
     private Customer currentCustomer = new Customer();
     private Luggage currentLuggage = new Luggage();
+    
+    // create database connection 
+    DB database = new DB();
 
     //step 1    
     @FXML
@@ -86,9 +90,6 @@ public class LostLuggage implements Initializable {
     // initialize the screen
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        // create database connection 
-        DB database = new DB();
 
         try {
             //this part shouldve been done with an inner join, but strangely only makes errors
@@ -148,40 +149,55 @@ public class LostLuggage implements Initializable {
         }
     }
 
-    //Code to update the information in the database
+    
     @FXML
-    private boolean updateLuggage(ActionEvent event) throws IOException, SQLException {
-
-//        Luggage luggage = new Luggage();
-//
-//        //step 1 
-//        customer.setName(NameField.textProperty().get());
-//        customer.setEmail(EmailField.textProperty().get());
-//        customer.setPhoneNumber(PhoneNumberField.textProperty().get());
-//        customer.setAddress(AddressField.textProperty().get());
-//        customer.setCity(CityField.textProperty().get());
-//        customer.setZipcode(ZipcodeField.textProperty().get());
-//        customer.setCountry(CountryField.textProperty().get());
-//
-//        //step 2
-//        luggage.setLabelNumber(LabelNumberField.textProperty().get());
-//        luggage.setBrand(BrandField.textProperty().get());
-//        luggage.setColor(ColorField.textProperty().get());
-//        luggage.setSpecialFeatures(SpecialFeaturesField.textProperty().get());
-//
-//        luggage.setCompesation(parseInt(Compensation.textProperty().get()));
-//        luggage.setLostDate(Datefield.getValue().toString());
-//
-//        luggage.saveLuggage();
-//        customer.saveCustomer();
-//
-//        Main.GoToScreen("LostAndFound.fxml");
-//
+    private boolean updateLuggage(ActionEvent event) throws IOException, SQLException { 
+        
+         // Make instances for the classes
+        Luggage luggage = new Luggage();
+        Customer customer = new Customer();
+       
+        //step 1 
+        customer.setName(NameField.getText().toString());
+        customer.setZipcode(ZipcodeField.getText().toString());
+        customer.setAddress(AddressField.getText().toString());
+        customer.setEmail(EmailField.getText().toString());
+        customer.setPhoneNumber(PhoneNumberField.getText().toString());
+        customer.setCity(CityField.getText().toString());
+        customer.setCountry(CountryField.getText().toString());
+        
+        //step 2
+        luggage.setLabelNumber(LabelNumberField.getText().toString());
+        luggage.setType(TypeField.getText().toString());
+        luggage.setBrand(BrandField.getText().toString());
+        luggage.setLocation(LocationField.getText().toString());
+        luggage.setColor(ColorField.getText().toString());
+        luggage.setStatus(StatusField.getText().toString());
+        luggage.setLostLocation(LostLocationField.getText().toString());
+        if(!CompesationField.getText().isEmpty()) {
+            luggage.setCompesation(Double.parseDouble(CompesationField.getText()));
+        }
+        
+        if(FoundDateField.getValue() != null) {
+            luggage.setFoundDate(FoundDateField.getValue().toString());
+        }
+         
+        if(LostDateField.getValue() != null) {
+            luggage.setLostDate(LostDateField.getValue().toString());
+        }
+        luggage.setSpecialFeatures(SpecialFeaturesField.getText());
+        
+        // Update luggage
+        luggage.updateLuggage(getCurrentLuggageId());
+        //customer.updateCustomer(customerResult.getInt("ID"));
+        
+        Main.GoToScreen("LostAndFound.fxml");
+        
         return true;
-
+       
     }
 
-    //code to click through the 3 views
+    
     @FXML
     private void nextStep(ActionEvent event) throws IOException {
         Step1.setVisible(false);

@@ -24,7 +24,7 @@
                         
                         
                         <!-- Step 1 -->
-                        <AnchorPane id="step1" fx:id="Step1" prefHeight="600.0" prefWidth="600.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane id="step1" fx:id="Step1" prefHeight="600.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <GridPane prefHeight="372.0" prefWidth="400.0">                                    
                                    <columnConstraints>
@@ -113,7 +113,7 @@
                         </AnchorPane>
                   
                         <!-- Step 2 -->
-                        <AnchorPane fx:id="Step2" prefHeight="600.0" prefWidth="599.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="Step2" prefHeight="600.0" prefWidth="599.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <Label fx:id="ValidationLabel" layoutX="51.0" layoutY="14.0" prefHeight="17.0" prefWidth="398.0" />
                                 <GridPane prefHeight="377.0" prefWidth="450.0">
@@ -231,9 +231,9 @@
                                                 <Insets right="15.0" />
                                             </GridPane.margin>
                                         </VBox>
-                                        <Button mnemonicParsing="false" onAction="#previousStep" text="Previous step" GridPane.rowIndex="7" />
+                                        <!--<Button mnemonicParsing="false" onAction="#previousStep" text="Previous step" GridPane.rowIndex="7" />-->
                                         <Button mnemonicParsing="false" onAction="#updateLuggage" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Step 3" />
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="" />
                                     </children>
                                 </GridPane>
                             </children>
