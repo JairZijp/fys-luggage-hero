@@ -25,6 +25,8 @@ import javafx.scene.layout.AnchorPane;
  */
 public class RegisterLuggage {
         
+    
+    // Define all the input fields for the different steps
     @FXML
     private AnchorPane Step1;
     @FXML
@@ -88,10 +90,12 @@ public class RegisterLuggage {
     @FXML
     private boolean saveLuggage(ActionEvent event) throws IOException, SQLException {
         
+        // Make instances for the classes
         Luggage luggage = new Luggage();
         Customer customer = new Customer();
         Flight flight = new Flight();
         
+        // Set all variables to the input from user.
         
         /* Step 1. */
         customer.setName(NameField.getText().toString());
@@ -112,7 +116,7 @@ public class RegisterLuggage {
             flight.setDate(DateField.getValue().toString());
         }
         
-        //values can not be null
+        // Values can not be null
         if(!flight.isValid()){
            ValidationLabel.setText("Please fill in all the required fields."); 
            return false;
@@ -142,12 +146,13 @@ public class RegisterLuggage {
         luggage.setFlightId(FlightIdField.getText().toString());
         luggage.setOwner(NameField.getText().toString());
    
-         //values can not be null
+         // Values can not be null
         if(!luggage.isValid()){
            ValidationLabel.setText("Please fill in all the required fields.");          
            return false;
         }
         
+        // Save the data
         flight.saveFlight();
         customer.saveCustomer();
         String addedCustomerId = customer.getLastId();
@@ -156,16 +161,18 @@ public class RegisterLuggage {
         
         luggage.saveLuggage();
         
+        // Go back to overview
         Main.GoToScreen("LostAndFound.fxml");
        
         return true;
     }
     
+    
+    // Next screen
     @FXML
     private void nextStep(ActionEvent event) throws IOException {
         Step1.setVisible(false);
         Step2.setVisible(true);
-        
     }
     
     @FXML
@@ -176,6 +183,7 @@ public class RegisterLuggage {
         
     }
     
+    // Previous screen
     @FXML
     private void previousStep(ActionEvent event) throws IOException {
         Step1.setVisible(true);

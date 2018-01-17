@@ -31,6 +31,7 @@ public class Luggage {
    
     public Luggage() {}
     
+    // Save luggage
     public boolean saveLuggage() {
         
         DB database = new DB();
@@ -39,17 +40,34 @@ public class Luggage {
                 " VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s')",
                 getLabelNumber(), getType(), getBrand(), getSpecialFeatures(), getOwner(), getStatus(), getLocation(), getLostLocation(), getFoundDate(), getLostDate(), getCompesation(), getCustomerId(), getColor(), getFlightId());
         
+        // Save luggage in the DB
         database.executeUpdateQuery(queryStep2);
         
         return true;
     }
     
+    // Update luggage
+    public boolean updateLuggage(int luggageId) {
+        
+        DB database = new DB();
+        
+        String queryStep2 = String.format("UPDATE luggage SET label_number = '%s', type = '%s', brand = '%s', special_features = '%s', status = '%s', location = '%s', lost_location = '%s', found_date = '%s', lost_date = '%s', compesation = '%s', color = '%s' WHERE ID = '%s' ",
+                getLabelNumber(), getType(), getBrand(), getSpecialFeatures(), getStatus(), getLocation(), getLostLocation(), getFoundDate(), getLostDate(), getCompesation(), getColor(), luggageId);
+        
+        // Update luggage in the DB
+        database.executeUpdateQuery(queryStep2);
+        
+        return true;
+    }
+    
+    // Get luggage
     public ResultSet getLuggage() throws SQLException {
         
         DB database = new DB();
         
         String queryGetLuggage = String.format("SELECT * FROM luggage ORDER BY ID ASC");
         
+        // Get luggage from DB for overview
         ResultSet queryResults = database.executeResultSetQuery(queryGetLuggage);
         
         return queryResults;
@@ -57,6 +75,8 @@ public class Luggage {
     }
     
     public boolean isValid(){
+        
+        // Check if some fields are not empty
         return this.labelNumber != null &&
                 this.type != null &&                
                 this.color != null &&
@@ -65,6 +85,8 @@ public class Luggage {
                 this.lostLocation != null;
     }
     
+    
+    // Getters and setters
     public String getLabelNumber() {
         return labelNumber;
     }

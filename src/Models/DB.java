@@ -10,7 +10,7 @@ import java.util.Enumeration;
 
 /**
  *
- * @author jairz
+ * @author Jaïr Zijp
  */
 public class DB {
     

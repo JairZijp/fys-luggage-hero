@@ -23,7 +23,6 @@ public class Roles {
         // add all the roles to the list
         roles.add("Manager");
         roles.add("Servicedesk");
-        roles.add("Traveler");
     }
 
     public static List GetRolesList(){

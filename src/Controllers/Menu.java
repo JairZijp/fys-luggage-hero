@@ -8,6 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
+/**
+ *
+ * @author Simon displayen van alle top-level screens
+ */
 public class Menu implements Initializable {
 
     @FXML
@@ -17,6 +21,11 @@ public class Menu implements Initializable {
     @FXML
     private Button StatisticsButton;
 
+    /**
+     * decide if user should be able to see statistics and users 
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (!Main.getCurrentUser().getRole().equals("Manager")) {

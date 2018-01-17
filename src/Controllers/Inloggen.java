@@ -12,6 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+/**
+ *
+ * @author Simon voor het inloggen van gebruikers
+ */
 public class Inloggen {
 
     @FXML
@@ -24,19 +28,24 @@ public class Inloggen {
     @FXML
     private void Login(ActionEvent event) throws NoSuchAlgorithmException, IOException, SQLException {
 
+        // create new user
         User user = new User();
 
-        String username = UsernameField.getText().toString(),
-                password = PasswordField.getText().toString(),
+        // set username and password from textfields
+        String username = UsernameField.textProperty().get(),
+                password = PasswordField.textProperty().get(),
                 hashedPassword = User.HashPassword(password);
 
+        //create connection and execute query
         DB Connection = new DB();
 
+        //this query will only select 1 row if the data is correct
         String sql = String.format("SELECT * FROM user WHERE `username` = '%s' AND `password` = '%s'",
                 username, hashedPassword);
 
         ResultSet queryResult = Connection.executeResultSetQuery(sql);
 
+        //get the first row from the returned data and set user-properties
         if (queryResult.first()) {
 
             //set properties of current user
