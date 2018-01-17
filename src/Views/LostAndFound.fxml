@@ -32,9 +32,6 @@
                         </columns>
                     </TableView>
                     <Button layoutX="539.0" layoutY="1.0" mnemonicParsing="false" onAction="#goToNew" text="Add Found Luggage" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                    <TextField layoutX="82.0" prefHeight="26.0" prefWidth="60.0" text="input" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="0.0" />
-                    <TextField layoutX="237.0" prefHeight="26.0" prefWidth="60.0" text="input" AnchorPane.leftAnchor="195.0" AnchorPane.topAnchor="0.0" />
-                    <TextField layoutX="309.0" prefHeight="26.0" prefWidth="85.0" text="20/10/2017" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="0.0" />
                     
                     <Button layoutX="214.0" mnemonicParsing="false" onAction="#GoToLuggageDetail" text="View Luggage" AnchorPane.rightAnchor="178.0" />
 
