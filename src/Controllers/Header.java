@@ -13,12 +13,17 @@ import javafx.scene.control.Label;
 
 /**
  *
- * @author Simon
+ * @author Simon Voor het verwelkomen van een gebruiker
  */
 public class Header implements Initializable{
     @FXML
     private Label Welcome;
     
+    /**
+     * show the name of the current logged in user
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Welcome.setText(String.format("Welcome, %s!", Main.getCurrentUser().getName()));

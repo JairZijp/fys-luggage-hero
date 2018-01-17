@@ -16,6 +16,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 
+/**
+ * 
+ * @author Simon Controller voor het aanmaken van een user
+ */
 public class UsersCreate implements Initializable {
     
     @FXML
@@ -35,11 +39,6 @@ public class UsersCreate implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb){        
-//        List<String> list = new ArrayList<>();
-//        list.add("Manager");
-//        list.add("Servicedesk");
-//        list.add("Traveler");
-//        ObservableList obList = FXCollections.observableList(list);
         ObservableList RolesList = Roles.GetRolesObservableList();
         RoleField.getItems().clear();
         RoleField.setItems(RolesList);
@@ -59,12 +58,12 @@ public class UsersCreate implements Initializable {
         User newUser = new User();
         
         //To String after every getText so it can be checked on being empty
-        newUser.setUsername(UserNameField.getText().toString());
-        newUser.setName(NameField.getText().toString());
+        newUser.setUsername(UserNameField.textProperty().get());
+        newUser.setName(NameField.textProperty().get());
         newUser.setRole(RoleField.getSelectionModel().getSelectedItem().toString());
-        newUser.setEmail(MailField.getText().toString());
-        newUser.setPassword(PasswordField.getText().toString());
-        final String confirmPassword = ConfirmPasswordField.getText().toString();
+        newUser.setEmail(MailField.textProperty().get());
+        newUser.setPassword(PasswordField.textProperty().get());
+        final String confirmPassword = ConfirmPasswordField.textProperty().get();
         
         
         //values can not be null

@@ -21,11 +21,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
  *
- * @author Simon
+ * @author Simon Controller voor het bewerken van een user
  */
 public class UsersEdit implements Initializable {
 
@@ -48,6 +49,8 @@ public class UsersEdit implements Initializable {
     private TextField PasswordField;
     @FXML
     private TextField ConfirmPasswordField;
+    @FXML
+    private Label ValidationLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -61,6 +64,7 @@ public class UsersEdit implements Initializable {
             // execute query
             ResultSet queryResult = Connection.executeResultSetQuery(sql);
 
+            // get the first result of the query
             if (queryResult.first()) {
                 UserEdit.setID(queryResult.getInt("ID"));
                 UserEdit.setUsername(queryResult.getString("username"));
@@ -88,13 +92,20 @@ public class UsersEdit implements Initializable {
         userId = id;
     }
 
+    /**
+     * this event is triggered on the button save click, it saves the user with the current filled in data
+     * @param event
+     * @throws NoSuchAlgorithmException
+     * @throws IOException 
+     */
     @FXML
     private void SaveUser(ActionEvent event) throws NoSuchAlgorithmException, IOException {
         boolean valid = true;
 
-        UserEdit.setUsername(UserNameField.getText().toString());
-        UserEdit.setName(NameField.getText().toString());
-        UserEdit.setEmail(MailField.getText().toString());
+        // set all the properties of the user object
+        UserEdit.setUsername(UserNameField.textProperty().get());
+        UserEdit.setName(NameField.textProperty().get());
+        UserEdit.setEmail(MailField.textProperty().get());
         UserEdit.setRole(RoleField.getSelectionModel().getSelectedItem().toString());
 
         //validation if password isnt empty
@@ -105,16 +116,17 @@ public class UsersEdit implements Initializable {
             valid = false;
         }
         if (!UserEdit.IsNotEmpty()) {
-            //ValidationLabel.setText("Fill in all fields");
+            ValidationLabel.setText("Fill in all fields");
             valid = false;
         }
 
-        //User needs valid getEmail
+        //user needs valid email
         if (!UserEdit.hasValidEmail()) {
-            //ValidationLabel.setText("E-mail is invalid");
+            ValidationLabel.setText("E-mail is invalid");
             valid = false;
         }
 
+        // if the user has valid data, then save and redirect to users
         if (valid) {
             UserEdit.Update();
             Main.GoToScreen("Users.fxml");
