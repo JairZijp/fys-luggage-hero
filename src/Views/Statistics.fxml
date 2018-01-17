@@ -55,7 +55,7 @@
                         <PieChart fx:id="AllLuggage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                             </children>
                         </GridPane>
-                  <ComboBox fx:id="AirportDropDown" layoutY="48.0" prefWidth="150.0" />
+                  <ComboBox fx:id="AirportDropDown" layoutY="48.0" onInputMethodTextChanged="#DataByAirport" prefWidth="150.0" />
                   <Label layoutY="31.0" text="Select an airport:" />
                     </children>
                <BorderPane.margin>

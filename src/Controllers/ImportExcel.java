@@ -3,6 +3,7 @@ package Controllers;
 import Models.Customer;
 import Models.Luggage;
 import java.io.File;
+import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +67,10 @@ public class ImportExcel {
                 String[] values = mList.get(i).get(12).toString().split(", ");
                 Luggage luggage = new Luggage();
                 Customer customer = new Customer();
+                //set data for customer
+                customer.setName(values[0]);
+                customer.setCity(values[1]);
+                customer.saveCustomer();
                 //set data for for luggage
                 luggage.setLabelNumber(mList.get(i).get(6).toString());
                 luggage.setType(mList.get(i).get(3).toString());
@@ -75,11 +80,8 @@ public class ImportExcel {
                 luggage.setSpecialFeatures(mList.get(i).get(13).toString());
                 luggage.setFlightId(mList.get(i).get(4).toString());
                 luggage.setOwner(values[0]);
+                luggage.setCustomerId(parseInt(customer.getLastId()));
                 luggage.saveLuggage();
-                //set data for customer
-                customer.setName(values[0]);
-                customer.setCity(values[1]);
-                customer.saveCustomer();
             }
         }
     }
